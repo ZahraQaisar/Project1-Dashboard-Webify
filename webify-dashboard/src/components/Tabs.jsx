@@ -25,7 +25,7 @@ const Tabs = ({ activeTab, setActiveTab, darkMode }) => {
   const underline = darkMode ? "bg-blue-400" : "bg-blue-600";
 
   return (
-    <div className="w-full flex flex-col items-center mt-4">
+    <div className="w-full flex flex-col items-center mt-8">
       <div
         className={`flex relative border-b ${border} w-full sm:w-4/5 justify-center overflow-x-auto`}
       >

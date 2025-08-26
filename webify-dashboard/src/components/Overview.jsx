@@ -31,7 +31,7 @@ ChartJS.register(
   RadialLinearScale
 )
 
-const Overview = ({ onNavigate }) => {
+const Overview = ({ onNavigate, darkMode }) => {
   const [animateCharts, setAnimateCharts] = useState(false)
   const [selectedPeriod, setSelectedPeriod] = useState('quarterly')
 
@@ -201,7 +201,7 @@ const Overview = ({ onNavigate }) => {
           color: 'rgba(0, 0, 0, 0.1)'
         },
         ticks: {
-          callback: function(value) {
+          callback: function (value) {
             return '$' + value.toLocaleString()
           }
         }
@@ -275,7 +275,7 @@ const Overview = ({ onNavigate }) => {
           color: 'rgba(0, 0, 0, 0.1)'
         },
         ticks: {
-          callback: function(value) {
+          callback: function (value) {
             return '$' + value.toLocaleString()
           }
         }
@@ -309,7 +309,7 @@ const Overview = ({ onNavigate }) => {
         titleColor: '#ffffff',
         bodyColor: '#ffffff',
         callbacks: {
-          label: function(context) {
+          label: function (context) {
             return context.label + ': ' + context.parsed + '%'
           }
         }
@@ -353,77 +353,81 @@ const Overview = ({ onNavigate }) => {
     }
   }
 
-return (
-    <div className={`min-h-screen flex flex-col lg:flex-row lg:gap-8 overflow-x-hidden transition-all duration-500 ${
-    document.documentElement.classList.contains('dark') ? 'bg-gray-900' : 'bg-gray-50'
-  }`}>
+  return (
+    <div className="min-h-screen flex flex-col lg:flex-row lg:gap-8 overflow-x-hidden transition-all duration-500">
+
       {/* Main Content Area */}
-<div className={`w-full lg:w-2/3 xl:w-3/4 min-w-0 p-6 lg:pr-0 transition-colors duration-300 ${
-  document.documentElement.classList.contains('dark') ? 'bg-gray-900' : ''
-} bg-white`}> 
-{/* Top Metric Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-          <div className={`rounded-xl shadow-lg p-6 text-center transition-all duration-700 delay-200 transition-colors duration-300 ${
-            animateCharts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          } ${
-            document.documentElement.classList.contains('dark') ? 'bg-gray-800' : 'bg-white'
-          }`}>
-            <h3 className={`text-lg font-semibold mb-2 transition-colors duration-300 ${
-              document.documentElement.classList.contains('dark') ? 'text-gray-300' : 'text-gray-600'
-            }`}>Contribution</h3>
+      <div className="w-full lg:w-2/3 xl:w-3/4 min-w-0 p-6 lg:pr-0 transition-colors duration-300"
+      >
+
+        {/* Top Metric Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 ">
+          <div className={`flex-1 p-4 rounded-lg transition-all duration-1000 delay-500
+               ${animateCharts ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}
+               ${darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900 shadow-lg"}`}>
+            <h3 className="text-lg font-semibold mb-2">Contribution</h3>
             <p className="text-3xl font-bold text-green-600">$120,000</p>
           </div>
-          <div className={`rounded-xl shadow-lg p-6 text-center transition-all duration-700 delay-400 transition-colors duration-300 ${
-            animateCharts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          } ${
-            document.documentElement.classList.contains('dark') ? 'bg-gray-800' : 'bg-white'
-          }`}>
-            <h3 className={`text-lg font-semibold mb-2 transition-colors duration-300 ${
-              document.documentElement.classList.contains('dark') ? 'text-gray-300' : 'text-gray-600'
-            }`}>Distributions</h3>
+
+          <div className={`flex-1 p-4 rounded-lg transition-all duration-1000 delay-500
+               ${animateCharts ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}
+               ${darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900 shadow-lg"}`}>
+            <h3 className={`text-lg font-semibold mb-2 transition-colors duration-300 ${document.documentElement.classList.contains('dark') ? 'text-gray-300' : 'text-gray-600'
+              }`}>Distributions</h3>
             <p className="text-3xl font-bold text-green-600">$3,370.80</p>
           </div>
-          <div className={`rounded-xl shadow-lg p-6 text-center transition-all duration-700 delay-600 transition-colors duration-300 ${
-            animateCharts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          } ${
-            document.documentElement.classList.contains('dark') ? 'bg-gray-800' : 'bg-white'
-          }`}>
-            <h3 className={`text-lg font-semibold mb-2 transition-colors duration-300 ${
-              document.documentElement.classList.contains('dark') ? 'text-gray-300' : 'text-gray-600'
-            }`}>Cash Yield</h3>
+
+          <div className={`flex-1 p-4 rounded-lg transition-all duration-1000 delay-500
+               ${animateCharts ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}
+               ${darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900 shadow-lg"}`}>
+            <h3 className={`text-lg font-semibold mb-2 transition-colors duration-300 ${document.documentElement.classList.contains('dark') ? 'text-gray-300' : 'text-gray-600'
+              }`}>Cash Yield</h3>
             <p className="text-3xl font-bold text-green-600">9%</p>
           </div>
+
         </div>
 
         {/* Time Period Selection */}
-        <div className={`flex justify-end gap-4 mb-6 transition-all duration-700 delay-800 ${
-          animateCharts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-        }`}>
-          <button 
-            onClick={() => handlePeriodChange('quarterly')}
-            className={`px-6 py-2 rounded-lg font-semibold transition-colors duration-300 ${
-              selectedPeriod === 'quarterly' ? 'bg-green-600 text-white' : 'bg-white text-gray-700 border border-gray-300'
-            }`}
-          >
-            Quarterly
-          </button>
-          <button 
-            onClick={() => handlePeriodChange('yearly')}
-            className={`px-6 py-2 rounded-lg font-semibold transition-colors duration-300 ${
-              selectedPeriod === 'yearly' ? 'bg-green-600 text-white' : 'bg-white text-gray-700 border border-gray-300'
-            }`}
-          >
-            Yearly
-          </button>
-        </div>
+<div className={`flex justify-end gap-4 mb-6 transition-all duration-700 delay-800 ${
+  animateCharts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+}`}>
+  <button
+    onClick={() => handlePeriodChange('quarterly')}
+    className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:-translate-y-1
+      ${
+        selectedPeriod === 'quarterly'
+          ? 'bg-green-600 text-white hover:bg-green-700 hover:shadow-green-400/50'
+          : darkMode
+            ? 'bg-gray-800 text-white border border-gray-600 hover:bg-gray-700 hover:border-green-500 hover:shadow-green-500/30'
+            : 'bg-white text-gray-700 border border-gray-300 hover:bg-green-50 hover:border-green-400 hover:shadow-green-200/50'
+      }`}
+  >
+    Quarterly
+  </button>
+
+  <button
+    onClick={() => handlePeriodChange('yearly')}
+    className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:-translate-y-1
+      ${
+        selectedPeriod === 'yearly'
+          ? 'bg-green-600 text-white hover:bg-green-700 hover:shadow-green-400/50'
+          : darkMode
+            ? 'bg-gray-800 text-white border border-gray-600 hover:bg-gray-700 hover:border-green-500 hover:shadow-green-500/30'
+            : 'bg-white text-gray-700 border border-gray-300 hover:bg-green-50 hover:border-green-400 hover:shadow-green-200/50'
+      }`}
+  >
+    Yearly
+  </button>
+</div>
+
+
 
         {/* Navigation to Distributions */}
-        <div className={`flex justify-center mb-6 transition-all duration-700 delay-900 ${
-          animateCharts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-        }`}>
-          <button 
+        <div className={`flex justify-center mb-6 transition-all duration-700 delay-900 ${animateCharts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
+          <button
             onClick={() => handleNavigate('distributions')}
-            className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300 shadow-lg"
+            className={`px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300 shadow-lg `}
           >
             View Distributions
           </button>
@@ -432,14 +436,10 @@ return (
         {/* Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {/* Account Value Chart */}
-          <div className={`rounded-xl shadow-lg p-6 transition-all duration-1000 delay-1000 transition-colors duration-300 ${
-            animateCharts ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          } ${
-            document.documentElement.classList.contains('dark') ? 'bg-gray-800' : 'bg-white'
-          }`}>
-            <h2 className={`text-xl font-semibold mb-2 transition-colors duration-300 ${
-              document.documentElement.classList.contains('dark') ? 'text-white' : 'text-gray-800'
-            }`}>Account Value</h2>
+          <div className={`rounded-xl shadow-lg p-6 transition-all duration-1000 delay-1000 transition-colors duration-300 
+              ${animateCharts ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}
+              ${darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900 shadow-lg"}`}>
+            <h2 className={`text-xl font-semibold mb-2 transition-colors duration-300 `}>Account Value</h2>
             <p className="text-3xl font-bold text-green-600 mb-4">$123,370.80</p>
             <div className="h-64">
               <Line data={accountValueData} options={lineChartOptions} />
@@ -447,14 +447,10 @@ return (
           </div>
 
           {/* Net Return Chart */}
-          <div className={`rounded-xl shadow-lg p-6 transition-all duration-1000 delay-1200 transition-colors duration-300 ${
-            animateCharts ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          } ${
-            document.documentElement.classList.contains('dark') ? 'bg-gray-800' : 'bg-white'
-          }`}>
-            <h2 className={`text-xl font-semibold mb-2 transition-colors duration-300 ${
-              document.documentElement.classList.contains('dark') ? 'text-white' : 'text-gray-800'
-            }`}>Net Return</h2>
+          <div className={`rounded-xl shadow-lg p-6 transition-all duration-1000 delay-1200 transition-colors duration-300 
+          ${animateCharts ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}
+              ${darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900 shadow-lg"}`}>
+            <h2 className={`text-xl font-semibold mb-2 transition-colors duration-300 `}>Net Return</h2>
             <p className="text-3xl font-bold text-green-600 mb-4">$3,370.80</p>
             <div className="h-64">
               <Bar data={netReturnData} options={barChartOptions} />
@@ -465,28 +461,20 @@ return (
         {/* Additional Charts Row */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {/* Cashflow History Chart */}
-          <div className={`rounded-xl shadow-lg p-6 transition-all duration-1000 delay-1400 transition-colors duration-300 ${
-            animateCharts ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          } ${
-            document.documentElement.classList.contains('dark') ? 'bg-gray-800' : 'bg-white'
-          }`}>
-            <h2 className={`text-xl font-semibold mb-2 transition-colors duration-300 ${
-              document.documentElement.classList.contains('dark') ? 'text-white' : 'text-gray-800'
-            }`}>Cashflow History</h2>
+          <div className={`rounded-xl shadow-lg p-6 transition-all duration-1000 delay-1400 transition-colors duration-300 
+            ${animateCharts ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}
+              ${darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900 shadow-lg"}`}>
+            <h2 className={`text-xl font-semibold mb-2 transition-colors duration-300 `}>Cashflow History</h2>
             <div className="h-64">
               <Line data={cashflowData} options={lineChartOptions} />
             </div>
           </div>
 
           {/* Portfolio Allocation Chart */}
-          <div className={`rounded-xl shadow-lg p-6 transition-all duration-1000 delay-1600 transition-colors duration-300 ${
-            animateCharts ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          } ${
-            document.documentElement.classList.contains('dark') ? 'bg-gray-800' : 'bg-white'
-          }`}>
-            <h2 className={`text-xl font-semibold mb-2 transition-colors duration-300 ${
-              document.documentElement.classList.contains('dark') ? 'text-white' : 'text-gray-800'
-            }`}>Portfolio Allocation</h2>
+          <div className={`rounded-xl shadow-lg p-6 transition-all duration-1000 delay-1600 transition-colors duration-300 
+            ${animateCharts ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}
+              ${darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900 shadow-lg"}`}>
+            <h2 className={`text-xl font-semibold mb-2 transition-colors duration-300 `}>Portfolio Allocation</h2>
             <div className="h-64">
               <Pie data={portfolioData} options={pieChartOptions} />
             </div>
@@ -496,28 +484,19 @@ return (
         {/* Performance and Risk Charts Row */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Performance Trend Chart */}
-          <div className={`rounded-xl shadow-lg p-6 transition-all duration-1000 delay-1800 transition-colors duration-300 ${
-            animateCharts ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          } ${
-            document.documentElement.classList.contains('dark') ? 'bg-gray-800' : 'bg-white'
-          }`}>
-            <h2 className={`text-xl font-semibold mb-2 transition-colors duration-300 ${
-              document.documentElement.classList.contains('dark') ? 'text-white' : 'text-gray-800'
-            }`}>Performance Trend</h2>
+          <div className={`rounded-xl shadow-lg p-6 transition-all duration-1000 delay-1800 transition-colors duration-300 ${animateCharts ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}
+              ${darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900 shadow-lg"}`}>
+            <h2 className={`text-xl font-semibold mb-2 transition-colors duration-300 `}>Performance Trend</h2>
             <div className="h-64">
               <Line data={performanceData} options={performanceChartOptions} />
             </div>
           </div>
 
           {/* Risk Analysis Chart */}
-          <div className={`rounded-xl shadow-lg p-6 transition-all duration-1000 delay-2000 transition-colors duration-300 ${
-            animateCharts ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          } ${
-            document.documentElement.classList.contains('dark') ? 'bg-gray-800' : 'bg-white'
-          }`}>
-            <h2 className={`text-xl font-semibold mb-2 transition-colors duration-300 ${
-              document.documentElement.classList.contains('dark') ? 'text-white' : 'text-gray-800'
-            }`}>Risk Analysis</h2>
+          <div className={`rounded-xl shadow-lg p-6 transition-all duration-1000 delay-2000 transition-colors duration-300 
+            ${animateCharts ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}
+              ${darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900 shadow-lg"}`}>
+            <h2 className={`text-xl font-semibold mb-2 transition-colors duration-300 `}>Risk Analysis</h2>
             <div className="h-64">
               <Radar data={riskData} options={radarChartOptions} />
             </div>
@@ -526,11 +505,9 @@ return (
       </div>
 
       {/* Right Sidebar */}
-      <div className={`w-full lg:w-1/3 xl:w-1/4 min-w-0 max-w-full p-6 lg:pl-0 lg:pr-6 transition-colors duration-300 ${
-      document.documentElement.classList.contains('dark') ? 'bg-gray-900' : 'bg-white'
-    }`}>
-      <RightSidebar animateCharts={animateCharts} />
-    </div>
+      <div className="w-full lg:w-1/3 xl:w-1/4 min-w-0 max-w-full p-6 lg:pl-0 lg:pr-6 transition-colors duration-300">
+        <RightSidebar animateCharts={animateCharts} darkMode={darkMode} />
+      </div>
     </div>
   )
 }

@@ -29,9 +29,9 @@ function App() {
 
       {/* Page content */}
       <div className="p-6">
-        {activeTab === "Overview" && <Overview />}
+        {activeTab === "Overview" && <Overview darkMode={darkMode}/>}
         {activeTab === "Documents" && <Documents darkMode={darkMode} />}
-        {activeTab === "Distributions" && <Distributions />}
+        {activeTab === "Distributions" && <Distributions darkMode={darkMode}/>}
       </div>
     </div>
   );
