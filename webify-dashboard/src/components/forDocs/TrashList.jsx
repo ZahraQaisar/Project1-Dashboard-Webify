@@ -7,7 +7,7 @@ const TrashList = ({ trash, restoreFile, deletePermanently }) => {
     }
 
     return (
-        <div className="border rounded mt-4">
+        <div className="border border-gray-200 dark:border-gray-700 rounded mt-4">
             <div className="grid grid-cols-5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold p-2 text-sm border-b border-gray-200 dark:border-gray-700">
                 <span>Name</span>
                 <span>Type</span>

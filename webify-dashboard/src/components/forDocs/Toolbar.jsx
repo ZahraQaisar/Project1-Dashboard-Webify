@@ -16,15 +16,15 @@ const Toolbar = ({
     onRedo,
 }) => {
     return (
-        <div className="flex flex-wrap items-center gap-4 p-2 border-b">
+        <div className="flex flex-wrap items-center gap-4 p-2 ">
             {/* Filter Icon */}
-            <button className="p-2 border border-gray-200 rounded shadow-sm">⚙️</button>
+            <button className="p-2 border border-gray-500 rounded shadow-sm">⚙️</button>
 
             {/* File Type Dropdown */}
             <select
                 value={filter}
                 onChange={(e) => setFilter(e.target.value)}
-                className="border border-gray-200 rounded p-1 shadow-sm"
+                className="border border-gray-500 rounded p-4 shadow-sm"
             >
                 <option value="All">All</option>
                 <option value="PDF">PDF</option>
@@ -38,7 +38,7 @@ const Toolbar = ({
             <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value)}
-                className="border border-gray-200 rounded p-1 shadow-sm"
+                className="border border-gray-500 rounded p-4 shadow-sm"
             >
                 <option value="updatedDesc">Updated ↓</option>
                 <option value="updatedAsc">Updated ↑</option>
@@ -50,7 +50,7 @@ const Toolbar = ({
             <div className="flex gap-3">
                 <button
                     onClick={() => setView("list")}
-                    className={`p-2 border border-gray-200 rounded shadow-sm ${
+                    className={`p-2 border border-gray-500 rounded shadow-sm ${
                         view === "list"
                             ? "bg-gray-100 text-gray-900"
                             : "text-gray-700"
@@ -62,7 +62,7 @@ const Toolbar = ({
 
                 <button
                     onClick={() => setView("grid")}
-                    className={`p-2 border border-gray-200 rounded shadow-sm ${
+                    className={`p-2 border border-gray-500 rounded shadow-sm ${
                         view === "grid"
                             ? "bg-gray-100 text-gray-900"
                             : "text-gray-700"
@@ -77,13 +77,13 @@ const Toolbar = ({
             <div className="flex gap-3">
                 <button
                     onClick={() => onUndo()}
-                    className="p-2 border border-gray-200 rounded shadow-sm"
+                    className="p-2 border border-gray-500 rounded shadow-sm"
                 >
                     ↩️
                 </button>
                 <button
                     onClick={() => onRedo()}
-                    className="p-2 border border-gray-200 rounded shadow-sm"
+                    className="p-2 border border-gray-500 rounded shadow-sm"
                 >
                     ↪️
                 </button>
@@ -103,7 +103,7 @@ const Toolbar = ({
             {/* Trash Toggle */}
             <button
                 onClick={() => setTrashOpen(!trashOpen)}
-                className="p-2 border border-gray-200 rounded shadow-sm"
+                className="p-2 border border-gray-500 rounded shadow-sm"
             >
                 {trashOpen ? "Close Trash" : `Trash (${trashCount})`}
             </button>

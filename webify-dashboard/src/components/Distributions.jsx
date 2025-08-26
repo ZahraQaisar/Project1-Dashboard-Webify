@@ -468,7 +468,7 @@ const Distributions = ({ onNavigate, darkMode }) => {
     ${darkMode
                 ? 'bg-gray-900 border-gray-900 text-white'
                 : 'bg-white border-gray-200 text-gray-800'}`}>
-
+              
               <div className="flex flex-wrap items-center justify-between gap-4">
                 {/* Left side - Filters and Dropdowns */}
                 <div className="flex flex-wrap items-center gap-3">

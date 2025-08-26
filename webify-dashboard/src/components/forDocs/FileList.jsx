@@ -9,7 +9,7 @@ const FileList = ({ files, view, moveToTrash, selectedFiles, toggleSelect, toggl
     if (view === "list") {
         const allSelected = files.length > 0 && selectedFiles.length === files.length;
         return (
-            <div className="border rounded">
+<div className="border border-gray-200 dark:border-gray-700 rounded">
                 <div className="grid grid-cols-7 bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200 font-semibold p-2 text-sm border-b border-gray-300 dark:border-gray-700 items-center">
                     <input type="checkbox" checked={allSelected} onChange={(e) => toggleSelectAll(e.target.checked)} />
                     <span>Name</span>
@@ -23,7 +23,8 @@ const FileList = ({ files, view, moveToTrash, selectedFiles, toggleSelect, toggl
                 {files.map((file, i) => (
                     <div
                         key={i}
-                        className="grid grid-cols-[30px_2fr_1fr_1fr_1fr_1.5fr_0.8fr] items-center border-b p-2 text-sm"
+                        className="grid grid-cols-[30px_2fr_1fr_1fr_1fr_1.5fr_0.8fr] items-center border-b border-gray-200 dark:border-gray-700
+ p-2 text-sm"
                     >
                         <input
                             type="checkbox"
@@ -62,7 +63,7 @@ const FileList = ({ files, view, moveToTrash, selectedFiles, toggleSelect, toggl
     return (
         <div className="grid grid-cols-4 gap-4 mt-4">
             {files.map((file, i) => (
-                <div key={i} className="border rounded p-4 flex flex-col items-center shadow relative">
+<div key={i} className="border border-gray-200 dark:border-gray-700 rounded p-4 flex flex-col items-center shadow relative">
                     <input type="checkbox" checked={selectedFiles.includes(i)} onChange={() => toggleSelect(i)} className="absolute top-2 left-2" />
                     <p className="mt-2 text-sm font-semibold text-center truncate w-full">{file.name}</p>
                     {/* 👇 actual size show */}
