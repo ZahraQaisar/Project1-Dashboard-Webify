@@ -10,8 +10,8 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
         ${darkMode ? "bg-gray-900" : "bg-white"}`}
     >
       {/* Left: Brand */}
-      <div className={`text-lg font-semibold ${darkMode ? "text-white" : "text-gray-800"}`}>
-        Shad's Dashboard
+      <div className={`text-lg pl-8 font-semibold ${darkMode ? "text-white" : "text-gray-800"}`}>
+        User's Dashboard
       </div>
 
       {/* Middle: Search */}
@@ -52,7 +52,7 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
         <div className="hidden sm:flex items-center space-x-2">
           <img src="profile.svg" alt="user" className="w-8 h-8 rounded-full" />
           <span className={`font-medium ${darkMode ? "text-white" : "text-gray-700"}`}>
-            Zuhair Shad
+            User Name
           </span>
         </div>
 
